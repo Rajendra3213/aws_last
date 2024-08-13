@@ -4,6 +4,30 @@
 {% block content %}
 
 <!-- main-section -->
+<div id="notification-bar" class="bg-gradient-to-r from-orange-500 to-orange-700 text-white flex flex-col md:flex-row justify-between items-center p-4 border-2 border-gray-300 rounded-2xl mt-4 mx-14 w-full max-w-7xl">
+    <span id="event-code" class="font-bold text-lg mb-4 md:mb-0 md:ml-4">AWS STUDENT COMMUNITY<br>DAY NEPAL 2024</span>
+    
+    <div id="countdown" class="flex flex-wrap gap-4 justify-center">
+        <div class="countdown-box bg-white bg-opacity-20 rounded-lg p-4 text-center shadow">
+            <span id="days" class="block text-2xl font-bold">00</span>
+            <p>Days</p>
+        </div>
+        <div class="countdown-box bg-white bg-opacity-20 rounded-lg p-4 text-center shadow">
+            <span id="hours" class="block text-2xl font-bold">00</span>
+            <p>Hours</p>
+        </div>
+        <div class="countdown-box bg-white bg-opacity-20 rounded-lg p-4 text-center shadow">
+            <span id="minutes" class="block text-2xl font-bold">00</span>
+            <p>Minutes</p>
+        </div>
+        <div class="countdown-box bg-white bg-opacity-20 rounded-lg p-4 text-center shadow">
+            <span id="seconds" class="block text-2xl font-bold">00</span>
+            <p>Seconds</p>
+        </div>
+    </div>
+    
+    <button onclick="attendEvent()" class="bg-gradient-to-r from-purple-700 to-purple-500 text-white py-2 px-4 rounded-2xl text-lg mt-4 md:mt-0 md:mr-4 shadow-lg hover:from-purple-500 hover:to-purple-700">Attend</button>
+</div>
 <section class="lg:py-16">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div class="mr-auto place-self-center lg:col-span-7">
@@ -203,6 +227,37 @@
             document.getElementById("countDown").style.display = "none";
         }
     }, 1000);
+
+    function countdownTimer() {
+    let countDownDate = new Date('Sep 29, 2024 09:00:00').getTime();
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+
+        if (distance < 0) {
+        clearInterval(x);
+        document.getElementById('countdown').innerHTML = 'EXPIRED';
+        }
+        }, 1000);
+    }
+
+    function attendEvent() {
+        alert('Thank you for your interest to attend!');
+    }
+
+    countdownTimer();
+
 </script>
 
 {% endblock %}
